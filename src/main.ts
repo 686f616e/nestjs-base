@@ -2,12 +2,19 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { WinstonModule } from 'nest-winston';
+import { LoggerService } from '@shared/services/logger.service';
 
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({}), {
+    logger: WinstonModule.createLogger({
+      instance: new LoggerService().winstonInstance(),
+    }),
+  });
 
+  // App settings
   app.setGlobalPrefix('api');
 
   app.useGlobalPipes(new ValidationPipe());

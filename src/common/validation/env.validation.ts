@@ -1,16 +1,11 @@
+import { DefaultValue, Environment } from '@common/constants/app-default-configs';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 
-export enum Environment {
-  Development = 'dev',
-  Production = 'prod',
-  Staging = 'stag',
-}
-
 class EnvironmentVariables {
-  NODE_ENV: Environment = Environment.Development;
+  NODE_ENV: Environment = DefaultValue.NODE_ENV;
 
-  PORT: number;
+  PORT: number = DefaultValue.PORT;
 }
 
 export function validate(config: Record<string, unknown>) {

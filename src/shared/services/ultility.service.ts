@@ -9,4 +9,8 @@ export class UltilityService {
       .replace(/đ/g, 'd')
       .replace(/Đ/g, 'D');
   }
+
+  isString(text: any) {
+    return Object.prototype.toString.call(text) === '[object String]';
+  }
 }

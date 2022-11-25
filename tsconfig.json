@@ -25,6 +25,6 @@
       "@shared/*": ["src/shared/*"],
       "@guards/*": ["src/guards/*"],
       "@exceptions/*": ["src/exceptions/*"]
-    }
+    },
   }
 }
